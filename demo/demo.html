@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Demo Page</title>
+  <style>
+    body { font-family: 'Inter', sans-serif; padding: 20px; background-color: #f4f7f6; color: #333; }
+    .container { max-width: 800px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    h1 { color: #1a1a2e; }
+    .box { width: 120px; height: 120px; background-color: #4361ee; color: white; display: flex; align-items: center; justify-content: center; margin: 10px; cursor: pointer; border-radius: 12px; transition: transform 0.2s; box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3); font-weight: bold; }
+    .box:hover { transform: scale(1.05); }
+    .flex-row { display: flex; gap: 20px; margin: 30px 0; }
+    button { padding: 12px 24px; cursor: pointer; background: #e76f51; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; transition: background 0.2s; box-shadow: 0 4px 10px rgba(231, 111, 81, 0.3); }
+    button:hover { background: #d65a3d; }
+    a { color: #4361ee; text-decoration: none; font-weight: bold; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Analytics Demo Page</h1>
+    <p>Click anywhere on this page to trigger <b>click</b> events. A <b>page_view</b> event was triggered when you loaded the page.</p>
+    
+    <div class="flex-row">
+      <div class="box">Interactive Box 1</div>
+      <div class="box" style="background-color: #2a9d8f; box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);">Interactive Box 2</div>
+    </div>
+    
+    <button onclick="console.log('Button clicked!')">Test Button</button>
+    <br><br><br>
+    <a href="#">Dummy Link</a>
+  </div>
+
+  <script src="tracker.js"></script>
+</body>
+</html>
