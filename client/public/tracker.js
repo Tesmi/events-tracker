@@ -48,8 +48,8 @@
   // 4. Track Clicks
   window.addEventListener('click', (event) => {
     sendEvent('click', {
-      click_x: event.clientX,
-      click_y: event.clientY
+      click_x: event.pageX,
+      click_y: event.pageY
     });
   });
 })();
