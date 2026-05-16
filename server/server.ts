@@ -26,15 +26,29 @@ app.use('/api', apiRoutes);
 // Global Error Handler Middleware
 app.use(errorHandler);
 
-// Database connection & Server startup
-mongoose.connect(process.env.MONGO_URI as string)
-  .then(() => {
+// Database connection (Serverless compatible)
+let isConnected = false;
+const connectDB = async () => {
+  if (isConnected || mongoose.connection.readyState >= 1) {
+    return;
+  }
+  try {
+    await mongoose.connect(process.env.MONGO_URI as string);
+    isConnected = true;
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  })
-  .catch((err: Error) => {
+  } catch (err: any) {
     console.error('MongoDB connection error:', err.message);
-    process.exit(1); // Exit process with failure if DB connection fails
+  }
+};
+
+connectDB();
+
+// Only bind to port if not running in a serverless environment like Vercel
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
   });
+}
+
+// Export for Vercel Serverless Functions
+export default app;
