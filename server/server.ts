@@ -20,12 +20,6 @@ app.use(express.json());
 // Serve static demo files
 app.use('/demo', express.static(path.join(__dirname, '../demo')));
 
-// Mount API Routes
-app.use('/api', apiRoutes);
-
-// Global Error Handler Middleware
-app.use(errorHandler);
-
 // Database connection (Serverless compatible)
 let isConnected = false;
 const connectDB = async () => {
@@ -38,10 +32,25 @@ const connectDB = async () => {
     console.log('Connected to MongoDB');
   } catch (err: any) {
     console.error('MongoDB connection error:', err.message);
+    throw err;
   }
 };
 
-connectDB();
+// Ensure DB is connected before handling API routes
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Mount API Routes
+app.use('/api', apiRoutes);
+
+// Global Error Handler Middleware
+app.use(errorHandler);
 
 // Only bind to port if not running in a serverless environment like Vercel
 if (process.env.NODE_ENV !== 'production') {
