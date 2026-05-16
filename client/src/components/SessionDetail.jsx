@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
-const BACKEND_URL = 'http://localhost:5001/api';
+import api from '../api/axios';
 
 const SessionDetail = ({ sessionId }) => {
   const [sessionData, setSessionData] = useState(null);
@@ -9,7 +7,7 @@ const SessionDetail = ({ sessionId }) => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`${BACKEND_URL}/sessions/${sessionId}`)
+    api.get(`/sessions/${sessionId}`)
       .then(res => {
         setSessionData(res.data);
         setLoading(false);

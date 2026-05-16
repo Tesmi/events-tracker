@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const BACKEND_URL = 'http://localhost:5001/api';
+import api from '../api/axios';
 
 const Heatmap = () => {
   const [pageUrl, setPageUrl] = useState('/demo.html');
@@ -11,7 +9,7 @@ const Heatmap = () => {
   const fetchHeatmap = () => {
     if (!pageUrl) return;
     setLoading(true);
-    axios.get(`${BACKEND_URL}/heatmap/${encodeURIComponent(pageUrl)}`)
+    api.get(`/heatmap/${encodeURIComponent(pageUrl)}`)
       .then(res => {
         setClicks(res.data.clicks);
         setLoading(false);

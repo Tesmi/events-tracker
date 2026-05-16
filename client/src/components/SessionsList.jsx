@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
-const BACKEND_URL = 'http://localhost:5001/api';
+import api from '../api/axios';
 
 const SessionsList = ({ onSelectSession, selectedSessionId }) => {
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/sessions`)
+    api.get('/sessions')
       .then(res => {
         setSessions(res.data);
         setLoading(false);
