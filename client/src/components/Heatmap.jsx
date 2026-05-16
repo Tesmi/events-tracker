@@ -5,6 +5,7 @@ const Heatmap = () => {
   const [pageUrl, setPageUrl] = useState('/demo.html');
   const [clicks, setClicks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [iframeHeight, setIframeHeight] = useState(0);
 
   const fetchHeatmap = () => {
     if (!pageUrl) return;
@@ -24,11 +25,27 @@ const Heatmap = () => {
     fetchHeatmap();
   }, [pageUrl]);
 
-  const maxClickX = clicks.length > 0 ? Math.max(...clicks.map(c => c.x)) : 1000;
+  const handleIframeLoad = (e) => {
+    try {
+      const iframe = e.target;
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      const height = Math.max(
+        doc.body.scrollHeight, doc.documentElement.scrollHeight,
+        doc.body.offsetHeight, doc.documentElement.offsetHeight,
+        doc.body.clientHeight, doc.documentElement.clientHeight
+      );
+      setIframeHeight(height);
+    } catch (err) {
+      console.error("Could not read iframe content height", err);
+      setIframeHeight(3000); // Fallback height if CORS blocked
+    }
+  };
+
+  const maxClickX = clicks.length > 0 ? Math.max(...clicks.map(c => c.x)) : 1280;
   const maxClickY = clicks.length > 0 ? Math.max(...clicks.map(c => c.y)) : 600;
   
-  const containerWidth = Math.max(1000, maxClickX + 100);
-  const containerHeight = Math.max(600, maxClickY + 100);
+  const containerWidth = Math.max(1280, maxClickX + 100);
+  const containerHeight = Math.max(600, maxClickY + 100, iframeHeight);
 
   return (
     <div style={{ border: '1px solid #e0e0e0', borderRadius: '8px', padding: '20px', backgroundColor: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
@@ -75,8 +92,25 @@ const Heatmap = () => {
           margin: '0 auto'
         }}>
           <div style={{ position: 'sticky', top: 15, left: 15, color: '#6c757d', fontSize: '14px', fontWeight: 'bold', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5px 10px', borderRadius: '4px', zIndex: 10, display: 'inline-block', margin: '15px' }}>
-            Simplified Page Representation (Total Clicks: {clicks.length})
+            Page Overlay (Total Clicks: {clicks.length})
           </div>
+
+          <iframe 
+            src={pageUrl} 
+            onLoad={handleIframeLoad}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              border: 'none',
+              opacity: 0.6,
+              pointerEvents: 'none',
+              zIndex: 1
+            }}
+            title="Page Overlay"
+          />
           
           {clicks.map((click, index) => (
             <div 
