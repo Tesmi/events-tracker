@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +14,14 @@
       --light: #f8fafc;
       --gray: #64748b;
     }
-    
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Outfit', sans-serif;
     }
-    
+
     body {
       background-color: var(--light);
       color: var(--dark);
@@ -212,6 +213,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navigation -->
@@ -228,7 +230,8 @@
   <!-- Hero Section -->
   <header class="hero">
     <h1>Understand Your Users,<br>Like Never Before.</h1>
-    <p>Track every click, hover, and page view in real-time. Optimize your conversion funnels with powerful heatmap analytics and user journey tracking.</p>
+    <p>Track every click, hover, and page view in real-time. Optimize your conversion funnels with powerful heatmap
+      analytics and user journey tracking.</p>
     <div>
       <button class="btn-primary" onclick="alert('Started free trial!')">Start Free Trial</button>
       <a href="#demo" class="btn-secondary">View Live Demo</a>
@@ -240,35 +243,41 @@
     <div class="card" onclick="console.log('Heatmaps Feature Clicked')">
       <div class="card-icon">🔥</div>
       <h3>Real-time Heatmaps</h3>
-      <p>Visually discover where your users are clicking and scrolling. Identify dead zones and highly engaged areas effortlessly.</p>
+      <p>Visually discover where your users are clicking and scrolling. Identify dead zones and highly engaged areas
+        effortlessly.</p>
     </div>
-    
+
     <div class="card" onclick="console.log('Journey Feature Clicked')">
       <div class="card-icon">📍</div>
       <h3>User Journey Tracking</h3>
-      <p>Follow a user's exact path through your application. See the exact sequence of events that lead to a successful conversion.</p>
+      <p>Follow a user's exact path through your application. See the exact sequence of events that lead to a successful
+        conversion.</p>
     </div>
-    
+
     <div class="card" onclick="console.log('Script Feature Clicked')">
       <div class="card-icon">⚡️</div>
       <h3>Lightweight Script</h3>
-      <p>Our tracking script is less than 5KB and executes asynchronously so it never impacts your website's performance.</p>
+      <p>Our tracking script is less than 5KB and executes asynchronously so it never impacts your website's
+        performance.</p>
     </div>
   </section>
 
   <!-- CTA Banner -->
   <section class="cta-banner" id="pricing">
     <h2>Ready to boost your conversions?</h2>
-    <button class="btn-primary" style="background: linear-gradient(135deg, var(--secondary), #f472b6);" onclick="alert('Redirecting to signup...')">Create your account</button>
+    <button class="btn-primary" style="background: linear-gradient(135deg, var(--secondary), #f472b6);"
+      onclick="alert('Redirecting to signup...')">Create your account</button>
   </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2026 CausalFunnel Demo. All rights reserved.</p>
-    <p style="font-size: 0.85rem; margin-top: 10px;">(This is a demonstration page strictly built to test event tracking integrations)</p>
+    <p style="font-size: 0.85rem; margin-top: 10px;">(This is a demonstration page strictly built to test event tracking
+      integrations)</p>
   </footer>
 
   <!-- Client-Side Tracking Script -->
-  <script src="tracker.js" data-api-url="http://localhost:5001/api/events"></script>
+  <script src="tracker.js" data-api-url="https://events-tracker-server.vercel.app/api/events"></script>
 </body>
+
 </html>
