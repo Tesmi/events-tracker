@@ -41,10 +41,8 @@ const Heatmap = () => {
     }
   };
 
-  const maxClickX = clicks.length > 0 ? Math.max(...clicks.map(c => c.x)) : 1280;
   const maxClickY = clicks.length > 0 ? Math.max(...clicks.map(c => c.y)) : 600;
   
-  const containerWidth = Math.max(1280, maxClickX + 100);
   const containerHeight = Math.max(600, maxClickY + 100, iframeHeight);
 
   return (
@@ -85,7 +83,8 @@ const Heatmap = () => {
       <div style={{ width: '100%', overflow: 'auto', border: '1px solid #ddd', borderRadius: '8px', backgroundColor: '#f1f3f5', maxHeight: '700px' }}>
         <div style={{ 
           position: 'relative', 
-          width: `${containerWidth}px`, 
+          width: '100%', 
+          minWidth: '1000px',
           height: `${containerHeight}px`, 
           backgroundImage: 'linear-gradient(#e9ecef 1px, transparent 1px), linear-gradient(90deg, #e9ecef 1px, transparent 1px)',
           backgroundSize: '20px 20px',
@@ -117,7 +116,7 @@ const Heatmap = () => {
               key={index}
               style={{
                 position: 'absolute',
-                left: `${click.x}px`,
+                left: `calc(50% + ${click.x}px)`,
                 top: `${click.y}px`,
                 width: '12px',
                 height: '12px',

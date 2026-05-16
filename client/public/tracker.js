@@ -47,8 +47,10 @@
 
   // 4. Track Clicks
   window.addEventListener('click', (event) => {
+    // Record relative to the center of the document to support responsive/centered layouts
+    const centeredX = event.pageX - (document.documentElement.clientWidth / 2);
     sendEvent('click', {
-      click_x: event.pageX,
+      click_x: centeredX,
       click_y: event.pageY
     });
   });
