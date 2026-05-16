@@ -1,6 +1,6 @@
 // tracker.js
 (function() {
-  const BACKEND_URL = 'http://localhost:5000/api/events';
+  const BACKEND_URL = 'http://localhost:5001/api/events';
   
   // 1. Session Management
   function getSessionId() {

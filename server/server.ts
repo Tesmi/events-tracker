@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 import { Event, IEvent } from './models/Event';
 
 dotenv.config();
@@ -11,6 +12,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// Serve the demo directory statically
+app.use('/demo', express.static(path.join(__dirname, '../demo')));
+console.log(__dirname);
 
 interface SessionResponse {
   session_id: string;

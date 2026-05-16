@@ -27,7 +27,7 @@ A full-stack application that tracks user interactions on a webpage and displays
 3. Create a `.env` file in the `server` directory and add your environment variables:
    ```
    MONGO_URI=your_mongodb_connection_string
-   PORT=5000
+   PORT=5001
    ```
 4. Start the backend development server:
    ```bash
