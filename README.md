@@ -12,7 +12,7 @@ A robust, full-stack application that tracks user interactions on a webpage (suc
 1. **Client-Side Tracking:** A lightweight vanilla JavaScript snippet (`tracker.js`) is embedded in the demo page. It automatically generates a unique `session_id` using `localStorage`. It listens for `load` (page views) and `click` events, attaching X/Y coordinates to clicks, and sends this data asynchronously to the backend API.
 2. **Backend API:** A Node.js/Express application receives the events and stores them in a MongoDB database. It provides RESTful endpoints to query aggregated session data, detailed user journeys, and heatmap coordinates.
 3. **Analytics Dashboard:** A React application fetches the data and visualizes it. It features a "Sessions View" to explore chronological user journeys and a "Heatmap View" to visually plot click coordinates over a simplified page representation.
-4. **Tracker Script:** Located at [https://github.com/Tesmi/events-tracker/blob/main/client/public/tracker.js]https://github.com/Tesmi/events-tracker/blob/main/client/public/tracker.js
+4. **Tracker Script:** Located at [https://github.com/Tesmi/events-tracker/blob/main/client/public/tracker.js](https://github.com/Tesmi/events-tracker/blob/main/client/public/tracker.js)
 
 ## Tech Stack
 
